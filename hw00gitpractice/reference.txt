@@ -1,0 +1,6 @@
+git clone “what you copied from repository” (clones onto computer)
+cat README.md (reads the file)
+git add README.md OR git add-A (updates work)
+git status (checks files)
+git commit -m (the comments)
+git push (pushes)
