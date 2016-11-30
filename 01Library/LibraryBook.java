@@ -14,13 +14,21 @@ abstract class LibraryBook extends Book implements Comparable<LibraryBook>{
 	callNumber = c;
     }
 
-    abstract void checkout(String patron, String due);
+    public abstract void checkout(String patron, String due);
 
-    abstract void returned();
+    public abstract void returned();
 
-    abstract String circulationStatus();
+    public abstract String circulationStatus();
 
-    
+    public int compareTo(LibraryBook x){
+	if(x instanceof LibraryBook){
+	    LibraryBook y = (LibraryBook) x;
+	}
+	return -1;
+	}
+	
+    }
 
     public String toString(){
+	return "";
     }
