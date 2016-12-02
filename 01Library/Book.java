@@ -37,8 +37,9 @@ public class Book{
     }
 
     public String toString(){
-	return "";
+	return "The author of "+ title +" is "+ author + ". The ISBN of this book is " + ISBN;
     }
+}
 	
 
 
