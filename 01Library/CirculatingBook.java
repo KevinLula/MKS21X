@@ -5,8 +5,8 @@ public class CirculatingBook extends LibraryBook{
 
     public CirculatingBook(String a, String t, String isbn, String cn){
 	super(a, t, isbn, cn);
-	currentHolder = "";
-	dueDate = "";	    
+	currentHolder = null;
+	dueDate = null;	    
     }
 
     public String getCurrentHolder(){
@@ -31,19 +31,19 @@ public class CirculatingBook extends LibraryBook{
     }
 
     public void returned(){
-	currentHolder = "";
-	dueDate = "";
+	currentHolder = null;
+	dueDate = null;
     }
 
     public String circulationStatus(){
-	if(currentHolder != "" && dueDate != ""){
-	    return "" + currentHolder + dueDate;
+	if(currentHolder != null){
+	    return "Checked out by: "+currentHolder+ "\n Due by: "+dueDate;
 	}
 	else{return "book available on shelves";}
     }
 
     public String toString(){
-	return super.toString() + "This is currently checked out by" + currentHolder + " and is due by "+ dueDate +".";
+	return super.toString() + " This is currently checked out by "+currentHolder+" and is due by "+dueDate+".";
     }
 }
 	    
