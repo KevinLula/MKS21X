@@ -16,11 +16,11 @@ public class ReferenceBook extends LibraryBook{
     }
 
     public void checkout(String patron, String due){
-	System.out.println(patron +"cannot checkout a reference book");
+	System.out.println("A reference book cannot be checked out.");
     }
 
     public void returned(){
-	System.out.println("reference book could not have been checked out -- return impossible");
+	System.out.println("Reference book could not have been checked out -- return impossible.");
     }
 
     public String circulationStatus(){
@@ -28,6 +28,6 @@ public class ReferenceBook extends LibraryBook{
     }
 
     public String toString(){
-	return super.toString() + "and it belongs in the collection" + collection;
+	return super.toString() + " This book belongs in " + collection + ".";
     }
 }
