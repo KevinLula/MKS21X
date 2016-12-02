@@ -39,11 +39,13 @@ public class CirculatingBook extends LibraryBook{
 	if(currentHolder != null){
 	    return "Checked out by: "+currentHolder+ "\n Due by: "+dueDate;
 	}
-	else{return "book available on shelves";}
+	else{return "Book available on shelves";}
     }
 
     public String toString(){
-	return super.toString() + " This is currently checked out by "+currentHolder+" and is due by "+dueDate+".";
+	if(currentHolder != null){
+	    return super.toString() + " This is currently checked out by "+currentHolder+" and is due by "+dueDate+".";}
+	else{return super.toString() + "This is book is available on shelves.";}
     }
 }
 	    
