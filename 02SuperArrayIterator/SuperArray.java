@@ -1,7 +1,8 @@
 //Kevin Lula 11/6/16
 //Worked with Anthony Hom
 
-public class SuperArray{
+import java.util.*;
+public class SuperArray implements Iterable<String>{
 
     private String [] data;
     private int size;
@@ -16,6 +17,10 @@ public class SuperArray{
 	    throw new IllegalArgumentException();}
 	size = 0;
 	data = new String [capacity];
+    }
+
+    public Iterator<String> iterator(){
+	return new SuperArrayIterator(this);
     }
 
     public void trimToSize(){
