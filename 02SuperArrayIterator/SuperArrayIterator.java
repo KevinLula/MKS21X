@@ -16,7 +16,7 @@ public class SuperArrayIterator implements Iterator<String>{
 } 
 
 public boolean hasNext(){
-    return start+1 < ary.size();
+    return start < ary.size();
 }
 
 public void remove(){
