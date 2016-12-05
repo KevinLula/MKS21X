@@ -3,19 +3,20 @@ public class SuperArrayIterator implements Iterator<String>{
 	private SuperArray ary;
 	private int start;
 	
-public SuperArrayIterator(int start){
-	this.start = start;
+    public SuperArrayIterator(SuperArray ary){
+        start = 0;
+	this.ary = ary;
 }
 
  public String  next(){
 	if (hasNext()){
-		start ++;
-		return ary.get(start - 1);}
+	    start++;
+	    return ary.get(start-1);}
  	else{throw new NoSuchElementException();}
 } 
 
 public boolean hasNext(){
-    return start < ary.size();
+    return start+1 < ary.size();
 }
 
 public void remove(){
