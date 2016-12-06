@@ -5,7 +5,7 @@ public class IsDoneMethods{
     public boolean isDone(){
 	int x, y;
 	boolean z = true;
-	if(SlidingPuzzle[0][0] == 0 || SlidingPuzzle[side][side] == 0){
+	if(SlidingPuzzle[0][0] == 0 || SlidingPuzzle[side-1][side-1] == 0){
 	    for(x = 0; x < side - 1; x++){
 		for(y = 0; y < side - 1; y++){
 		    if(SlidingPuzzle[x][y] > SlidingPuzzle[x][y+1]){
@@ -23,3 +23,21 @@ public class IsDoneMethods{
     }
 
     //2)
+    public boolean isDone(){
+	int x, y;
+	int a = 1;
+	boolean z = true;
+	if(SlidingPuzzle[0][0] == a){
+	    for(x = 0; x < side; x++){
+		for(y = 0; y < side; y++){
+		    if(SlidingPuzzle[x][y] != (a + 1) || SlidingPuzzle[x][y] != 0){
+			z = false;}
+		    a = a + 1;}}}
+	if(SlidingPuzzle[0][1] == a){
+	    for(x = 0; x < side; x++){
+		for(y = 0; y < side; y++){
+		    if(SlidingPuzzle[x][y] != (a - 1)){
+			    z = false;}
+		    a = a + 1;}}}
+	else{z = false;}
+	return z;}
