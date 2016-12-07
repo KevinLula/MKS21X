@@ -30,14 +30,42 @@ public class Barcode implements Comparable<Barcode>{
 
 //postcondition: format zip + check digit + Barcode 
 //ex. "084518  |||:::|::|::|::|:|:|::::|||::|:|"      
-  public String toString(){}
+  public String toString(){
+	String temp = _zip + _checkDigit
+	String ans = ""
+	for(int x = 0; x < temp.length(); x++){
+	switch(temp.charAt(x)){
+	case 0: ans = ans + "||:::";
+		break;
+	case 1: ans = ans + ":::||";
+		break;
+	case 2: ans = ans + "::|:|";
+		break;
+	case 3: ans = ans + "::||:";
+		break;
+	case 4: ans = ans + ":|::|";
+		break;
+	case 5: ans = ans + ":|:|:";
+		break;
+	case 6: ans = ans + ":||::";
+		break;
+	case 7: ans = ans + "|:::|";
+		break;
+	case 8: ans = ans + "|::|:";
+		break;
+	case 9: ans = ans + "|:|::";
+		break; 
+	default: ans = ans + "";
+		break;}
+		}
+	System.out.println(ans);
+	}
 
 
 // postcondition: compares the zip + checkdigit, in numerical order. 
   public int compareTo(Barcode other){
 	}
     
-}
 
 //Hint: a switch statement is your friend here. It is optional, however.
 
