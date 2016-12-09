@@ -29,6 +29,7 @@ public class Barcode implements Comparable<Barcode>{
 	x = x + z.get(y);
 	}
 	return (int)z + (x % 10)}
+}
 
 	public String get_Zip(){
 	return _zip;
@@ -110,6 +111,7 @@ public class Barcode implements Comparable<Barcode>{
 }
 
 	public int toZip(String code){
+	if((code.charAt(0) != '|' && code.charAt(31) != '|') || code.length() != 32 || substring(26,30) != to
 	
 }
 
