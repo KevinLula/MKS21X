@@ -79,7 +79,6 @@ public class Barcode implements Comparable<Barcode>{
 //Hint: a switch statement is your friend here. It is optional, however.
 
 	public String toCode(String zip){
-	String temp = checkSum(zip)
         String ans = "|"
 	for(int x = 0; x < temp.length(); x++){
 	switch(temp.charAt(x)){
@@ -111,7 +110,8 @@ public class Barcode implements Comparable<Barcode>{
 }
 
 	public int toZip(String code){
-	if((code.charAt(0) != '|' && code.charAt(31) != '|') || code.length() != 32 || substring(26,30) != to
+	if((code.charAt(0) != '|' && code.charAt(31) != '|') || code.length() != 32 || substring(26,30) != toCode() || 
+	//checks for if only has |; ALSO checks for 
 	
 }
 
