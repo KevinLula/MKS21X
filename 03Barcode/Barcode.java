@@ -1,6 +1,7 @@
 public class Barcode implements Comparable<Barcode>{
     private String _zip;
     private int _checkDigit;
+    private static String[] barcodes = {"||:::",":::||","::|:|","::||:",":|::|",":|:|:",":||::","|:::|","|::|:","|:|::"};
 
 // constructors
 //precondtion: _zip.length() = 5 and zip contains only digits.
@@ -8,39 +9,34 @@ public class Barcode implements Comparable<Barcode>{
 //               or zip contains a non digit
 //               _zip and _checkDigit are initialized.
   public Barcode(String zip) {
-	int temp = 0
-	if(zip.length() != 5 || ){
-	throw new RunTimeException();}
-	else{
+	if(zip.length() != 5){
+	    throw new IllegalArgumentException("Zip must be 5 digits long");}
+	for(int x = 0; x < 5; x ++){
+	    if(!Character.isDigit(zip.charAt(x))){
+		throw new IllegalArgumentException("Zip can only contain digits");}
+	}
 	_zip = zip;
-	for(int x = 0; x < _zip.length(); x++){
-	temp = temp + _zip.get(x);
-	}
-	_checkDigit = temp % 10;}
-	}
+        _checkDigit = checkSum() % 10;
+  }
 	
 
 
 
 // postcondition: computes and returns the check sum for _zip
-  private static int checkSum(String z){
-	int x = 0
-        for(int y = 0; y < z.length(); y++){
-	x = x + z.get(y);
+  private int checkSum(){
+      int x = 0;
+        for(int y = 0; y < _zip.length(); y++){
+	    x = x + _zip.charAt(y);
 	}
-	return (int)z + (x % 10)}
-}
+	return x;}
 
-	public String get_Zip(){
-	return _zip;
-}
 
 
 //postcondition: format zip + check digit + Barcode 
 //ex. "084518  |||:::|::|::|::|:|:|::::|||::|:|"      
   public String toString(){
-	String temp = _zip + _checkDigit
-	String ans = "|"
+      String temp = _zip + _checkDigit;
+      String ans = "|";
 	for(int x = 0; x < temp.length(); x++){
 	switch(temp.charAt(x)){
 	case 0: ans = ans + "||:::";
@@ -67,52 +63,96 @@ public class Barcode implements Comparable<Barcode>{
 		break;}
 		}
 	return temp + "" + ans + "|";
-	}
+  }
 
 
 // postcondition: compares the zip + checkdigit, in numerical order. 
   public int compareTo(Barcode other){
-	return checkSum(_zip).compareTo(checkSum(other.get_Zip()));
+      return (Integer.valueOf(_zip + _checkDigit)).compareTo(Integer.valueOf(other._zip + other._checkDigit));
+  }
+
+    private static int findIntCorrespondence(String end){
+	for(int x = 0; x < barcodes.length; x++){
+	    if(barcodes[x].equals(end)){
+		    return x;}
 	}
-    
+	throw new IllegalArgumentException("Characters other than barcode characters (| ;) can not be used");}
+
+    private static int checkCheckSum(String beg){
+	int total = 0;
+	for(int x  = 0; x < beg.length(); x = x + 5){
+	    total = total + findIntCorrespondence(beg.substring(x, x + 5));
+	}
+	return total;
+    }
+
+		
 
 //Hint: a switch statement is your friend here. It is optional, however.
 
 	public String toCode(String zip){
-        String ans = "|"
-	for(int x = 0; x < temp.length(); x++){
-	switch(temp.charAt(x)){
-	case 0: ans = ans + "||:::";
-		break;
-	case 1: ans = ans + ":::||";
-		break;
-	case 2: ans = ans + "::|:|";
-		break;
-	case 3: ans = ans + "::||:";
-		break;
-	case 4: ans = ans + ":|::|";
-		break;
-	case 5: ans = ans + ":|:|:";
-		break;
-	case 6: ans = ans + ":||::";
-		break;
-	case 7: ans = ans + "|:::|";
-		break;
-	case 8: ans = ans + "|::|:";
-		break;
-	case 9: ans = ans + "|:|::";
-		break; 
-	default: ans = ans + "";
-		break;}
+	    String ans = _zip + _checkDigit + "|";
+		if(zip.length() == 5){
+		    for(int x = 0; x < zip.length(); x++){
+			char y = zip.charAt(x);
+			if (y == '0'){
+			    ans = ans + "||:::";
+			}
+		        else if (y == '1'){
+			    ans = ans + ":::||";
+			}
+			else if (y == '2'){
+			    ans = ans + "::|:|";
+			}
+			else if (y == '3'){
+			    ans = ans + "::||:";
+			}
+			else if (y == '4'){
+			    ans = ans + ":|::|";
+			}
+			else if (y == '5'){
+			    ans = ans + ":|:|:";
+			}
+			else if (y == '6'){
+			    ans = ans + ":||::";
+			}
+			else if (y == '7'){
+			    ans = ans + "|:::|";
+			}
+			else if (y == '8'){
+			    ans = ans + "|::|:";
+			}
+			else if (y == '9'){
+			    ans = ans + "|:|::";
+			}
+		    else{
+			throw new IllegalArgumentException("Zip must only have digits");}
+		    }
 		}
-	return ans + "|";
+		    else{
+			throw new IllegalArgumentException("Zip must only have 5 digits");}
+	        ans = ans + barcodes[_checkDigit] + "|";
+		return ans;
 	}
-}
 
-	public int toZip(String code){
-	if((code.charAt(0) != '|' && code.charAt(31) != '|') || code.length() != 32 || substring(26,30) != toCode() || 
-	//checks for if only has |; ALSO checks for 
-	
+
+    public String toZip(String code){
+	String ans = "";
+	if(code.length() != 32){
+	    throw new IllegalArgumentException("Barcode must have a length of 32 characters");}
+	else if(code.charAt(0) != '|' || code.charAt(31) != '|'){
+	    throw new IllegalArgumentException("Barcode must start and end with |");}
+	else if((checkCheckSum(code.substring(1, 26)) % 10) != (findIntCorrespondence(code.substring(26,31)))){
+	    throw new IllegalArgumentException("Checksum is incorrect");}
+	for(int x = 1; x < code.length() - 6; x = x + 5){
+	    ans = ans + findIntCorrespondence(code.substring(x, x + 5));
+	}
+	return ans;}
 }
+								  
+	    
+
+
+
 
 
