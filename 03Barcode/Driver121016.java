@@ -9,7 +9,7 @@ public class Driver121016{
 	System.out.println(a.toString().compareTo("084518 |||:::|::|::|::|:|:|::::|||::|:|")); //0
 	System.out.println(a.compareTo(a)); //0
 	System.out.println(b.compareTo(a)); //1
-	System.out.println(c.compareTo(a)); //1
+	System.out.println(a.compareTo(c)); //-1
 		
 	//more tests for second part of the lab:
 
