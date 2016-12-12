@@ -37,33 +37,42 @@ public class Barcode implements Comparable<Barcode>{
   public String toString(){
       String temp = _zip + _checkDigit;
       String ans = "|";
-	for(int x = 0; x < temp.length(); x++){
-	switch(temp.charAt(x)){
-	case 0: ans = ans + "||:::";
-		break;
-	case 1: ans = ans + ":::||";
-		break;
-	case 2: ans = ans + "::|:|";
-		break;
-	case 3: ans = ans + "::||:";
-		break;
-	case 4: ans = ans + ":|::|";
-		break;
-	case 5: ans = ans + ":|:|:";
-		break;
-	case 6: ans = ans + ":||::";
-		break;
-	case 7: ans = ans + "|:::|";
-		break;
-	case 8: ans = ans + "|::|:";
-		break;
-	case 9: ans = ans + "|:|::";
-		break; 
-	default: ans = ans + "";
-		break;}
-		}
-	return temp + "" + ans + "|";
+      for(int x = 0; x < temp.length(); x++){
+			char y = temp.charAt(x);
+			if (y == '0'){
+			    ans = ans + "||:::";
+			}
+		        else if (y == '1'){
+			    ans = ans + ":::||";
+			}
+			else if (y == '2'){
+			    ans = ans + "::|:|";
+			}
+			else if (y == '3'){
+			    ans = ans + "::||:";
+			}
+			else if (y == '4'){
+			    ans = ans + ":|::|";
+			}
+			else if (y == '5'){
+			    ans = ans + ":|:|:";
+			}
+			else if (y == '6'){
+			    ans = ans + ":||::";
+			}
+			else if (y == '7'){
+			    ans = ans + "|:::|";
+			}
+			else if (y == '8'){
+			    ans = ans + "|::|:";
+			}
+			else if (y == '9'){
+			    ans = ans + "|:|::";
+			}
+      }
+      	return temp + " " + ans + "|";
   }
+ 
 
 
 // postcondition: compares the zip + checkdigit, in numerical order. 
@@ -90,8 +99,9 @@ public class Barcode implements Comparable<Barcode>{
 
 //Hint: a switch statement is your friend here. It is optional, however.
 
-	public String toCode(String zip){
-	    String ans = _zip + _checkDigit + "|";
+	public static String toCode(String zip){
+	    String ans = "|";
+	    int checkSum = 0;
 		if(zip.length() == 5){
 		    for(int x = 0; x < zip.length(); x++){
 			char y = zip.charAt(x);
@@ -131,12 +141,16 @@ public class Barcode implements Comparable<Barcode>{
 		}
 		    else{
 			throw new IllegalArgumentException("Zip must only have 5 digits");}
-	        ans = ans + barcodes[_checkDigit] + "|";
+		for(int y = 0; y < zip.length(); y++){
+		    checkSum = checkSum + Integer.parseInt(zip.substring(y, y+1));
+		}
+		checkSum = checkSum % 10;
+	        ans = ans + barcodes[checkSum] + "|";
 		return ans;
 	}
 
 
-    public String toZip(String code){
+    public static String toZip(String code){
 	String ans = "";
 	if(code.length() != 32){
 	    throw new IllegalArgumentException("Barcode must have a length of 32 characters");}
