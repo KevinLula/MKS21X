@@ -22,12 +22,23 @@ public class Sorts{
     }
 		
 			
-	public insertionSort(int[]data){
+	public static void insertionSort(int[]data){
 	int position = 0;
 	int value = 0;
 	for(int x = 1; x < data.length; x++){
+		value = data[x];
 		for(int y = x; y > 0; y--){
-			if(data[y] < data[y-1])
+			if(data[y] < data[y-1]){
+			data[y] = data[y - 1];
+			position = y - 1;}
+			else{position = y;
+				break;}
+		}
+		data[position] = value;
+}
+}
+	
+			
 				
 
     public static String toString(int[]data){
@@ -46,7 +57,7 @@ public class Sorts{
 public static void main(String [] args){
     System.out.println(name());
     int[]data = {5, 9, 3, 7, 12, 10, 18, 1, 0};
-    selectionSort(data);
+    insertionSort(data);
     System.out.println(toString(data));
 }
 }
