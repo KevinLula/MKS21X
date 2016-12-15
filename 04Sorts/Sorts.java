@@ -42,6 +42,8 @@ public class Sorts{
 	int value = 0;
 	for(int y = 0; y < data.length; y++){
 	for(int x = 0; x < data.length; x++){
+		if(data[y] < data[y+1]){
+		break;}
 		if(data[y] > data[x+1]){
 		value = data[x+1];
 		data[x+1] = data[y];
@@ -74,3 +76,5 @@ public static void main(String [] args){
     System.out.println(toString(data));
 }
 }
+
+//System.currentTimeMillis();
