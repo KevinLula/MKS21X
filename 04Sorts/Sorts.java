@@ -28,7 +28,7 @@ public class Sorts{
 	for(int x = 1; x < data.length; x++){
 		value = data[x];
 		for(int y = x; y > 0; y--){
-			if(data[y] < data[y-1]){
+			if(value < data[y-1]){
 			data[y] = data[y - 1];
 			position = y - 1;}
 			else{position = y;
