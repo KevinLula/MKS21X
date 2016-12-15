@@ -37,10 +37,23 @@ public class Sorts{
 		data[position] = value;
 }
 }
+
+	public static void bubbleSort(int[]data){
+	int value = 0;
+	for(int y = 0; y < data.length; y++){
+	for(int x = 0; x < data.length; x++){
+		if(data[y] > data[x+1]){
+		value = data[x+1];
+		data[x+1] = data[y];
+		data[y] = value;
+		y = 0;}
+}
+}
+}
+			
 	
 			
-				
-
+			
     public static String toString(int[]data){
 	String str = "{";
 	    for(int x = 0; x < data.length; x++){
@@ -57,7 +70,7 @@ public class Sorts{
 public static void main(String [] args){
     System.out.println(name());
     int[]data = {5, 9, 3, 7, 12, 10, 18, 1, 0};
-    insertionSort(data);
+    bubbleSort(data);
     System.out.println(toString(data));
 }
 }
