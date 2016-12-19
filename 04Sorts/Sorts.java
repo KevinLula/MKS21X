@@ -38,20 +38,25 @@ public class Sorts{
 }
 }
 
+
+
 	public static void bubbleSort(int[]data){
-	int value = 0;
-	for(int y = 0; y < data.length; y++){
-	for(int x = 0; x < data.length; x++){
-		if(data[y] < data[y+1]){
-		break;}
-		if(data[y] > data[x+1]){
-		value = data[x+1];
-		data[x+1] = data[y];
-		data[y] = value;
-		y = 0;}
-}
-}
-}
+	    int current;
+	    boolean swapped = true;
+	    while(swapped){
+		swapped = false;
+		for(int x = 0; x < data.length - 1; x++){
+		    if(data[x] > data[x + 1]){
+			current = data[x];
+			data[x] = data[x + 1];
+			data[x + 1] = current;
+			swapped = true;
+		    }
+		}
+	    }
+	}
+					
+	    
 			
 	
 			
