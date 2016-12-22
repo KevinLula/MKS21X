@@ -78,7 +78,7 @@ public class Sorts{
 
 public static void main(String [] args){
     System.out.println(name());
-    int[]data = {};
+    int[]data = {5, 1, 9, 2, 11, 14};
     bubbleSort(data);
     System.out.println(toString(data));
 }
