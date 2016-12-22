@@ -63,6 +63,8 @@ public class Sorts{
 			
     public static String toString(int[]data){
 	String str = "{";
+        if(data.length == 0){
+            return str + "}";}
 	    for(int x = 0; x < data.length; x++){
 		if(x + 1 == data.length){
 		    str = str + data[x] + "}";
@@ -76,7 +78,7 @@ public class Sorts{
 
 public static void main(String [] args){
     System.out.println(name());
-    int[]data = {5, 9, 3, 7, 12, 10, 18, 1, 0};
+    int[]data = {};
     bubbleSort(data);
     System.out.println(toString(data));
 }
