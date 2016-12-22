@@ -1,5 +1,5 @@
 import javax.swing.*;
-import java.awt.*;//NEW STUFF!
+import java.awt.*;
 import java.awt.event.*;
 
 public class CFGUI extends JFrame implements ActionListener{
@@ -33,10 +33,10 @@ public class CFGUI extends JFrame implements ActionListener{
   public void actionPerformed(ActionEvent e){
    String event = e.getActionCommand();
    if(event.equals("CtoF")){
-       j.setText(Double.toString(CtoF(Double.parseDouble(j.getText()))) + " F");
+       t.setText(Double.toString(CtoF(Double.parseDouble(t.getText()))) + " F");
    }
    if(event.equals("FtoC")){
-       j.setText(Double.toString(FtoC(Double.parseDouble(j.getText()))) + " C");
+       t.setText(Double.toString(FtoC(Double.parseDouble(t.getText()))) + " C");
    }
   }
 
@@ -47,5 +47,10 @@ public class CFGUI extends JFrame implements ActionListener{
     public static double FtoC (double a) {
 	return (a-32) / 1.8;
     }
+
+public static void main(String[] args){
+CFGUI a = new CFGUI();
+a.setVisible(true);
+}
   
 }
